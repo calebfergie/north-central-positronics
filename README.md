@@ -1,6 +1,12 @@
 # North Central Positronics
 
+A game built with [Twine](https://twinery.org/)
+
 created for use with Heroku and node.js using the [node-js-getting-started](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
+
+## Additional resources:
+- [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
+- [Allison Parrish's Twine Introduction](http://catn.decontextualize.com/twine/)
 
 Still to be done
 
