@@ -1,7 +1,7 @@
 {
-  "name": "node-js-getting-started",
-  "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "name": "north-central-positronics",
+  "version": "0.1.0",
+  "description": "a text based game",
   "engines": {
     "node": "10.x"
   },
@@ -20,12 +20,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "git+https://github.com/calebfergie/north-central-positronics.git"
   },
   "keywords": [
     "node",
     "heroku",
     "express"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/calebfergie/north-central-positronics/issues"
+  },
+  "homepage": "https://github.com/calebfergie/north-central-positronics#readme",
+  "author": "calebfergie"
 }

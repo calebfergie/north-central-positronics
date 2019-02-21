@@ -1,16 +1,8 @@
-# node-js-getting-started
+# North Central Positronics
 
-A barebones Node.js app using [Express 4](http://expressjs.com/).
+created for use with Heroku and node.js using the [node-js-getting-started](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 
-This application supports the [Getting Started with Node on Heroku](https://devcenter.heroku.com/articles/getting-started-with-nodejs) article - check it out.
-
-## Running Locally
-
-Make sure you have [Node.js](http://nodejs.org/) and the [Heroku CLI](https://cli.heroku.com/) installed.
-
-```sh
-$ git clone https://github.com/heroku/node-js-getting-started.git # or clone your own fork
-$ cd node-js-getting-started
+Still to be done
 $ npm install
 $ npm start
 ```
