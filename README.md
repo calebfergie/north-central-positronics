@@ -3,6 +3,8 @@
 created for use with Heroku and node.js using the [node-js-getting-started](https://devcenter.heroku.com/articles/getting-started-with-nodejs)
 
 Still to be done
+
+```
 $ npm install
 $ npm start
 ```
