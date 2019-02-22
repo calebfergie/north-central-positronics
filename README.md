@@ -18,7 +18,3 @@ I set the app to the custom (sub)domain [thesis.calebfergie.com](thesis.calebfer
 ## Additional resources:
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
 - [Allison Parrish's Twine Introduction](http://catn.decontextualize.com/twine/)
-
-## To Do
-- Add custom js file/function on top of deployed app
-- Default to HTTPS on thesis.calebfergie.com
