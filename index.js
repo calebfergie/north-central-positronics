@@ -5,6 +5,7 @@ const admin = require('firebase-admin');
 const PORT = process.env.PORT || 5000
 require('dotenv').config()
 
+//FIREBASE
 admin.initializeApp({
   credential: admin.credential.cert({
     projectId: 'ncp-db',
