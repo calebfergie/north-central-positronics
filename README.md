@@ -19,9 +19,11 @@ I set the app to the custom (sub)domain [thesis.calebfergie.com](thesis.calebfer
 
 #### Collecting Responses - Customizing Twine
 
-I added custom javascript to the twine game, which can be found in the [twine-global.js](/public/js/twine-global.js) file. This file is almost all a  minified version of jQuery, along with the following function to add responses to the DOM so the app can pick them up:
+I added custom javascript to the twine game, which can be found in the [twine-global.js](/public/js/twine-global.js) file. This file includes:
+- a minified version of jQuery
+- a function to add responses to the DOM through an invisible div with id `transfercell`:
 
-`postrender.collect = function() {
+```postrender.collect = function() {
     var fieldval = $("input").val();
 	if(typeof fieldval !== "undefined") {
 	console.log("postrender says the user answered: " + fieldval);
@@ -29,20 +31,26 @@ I added custom javascript to the twine game, which can be found in the [twine-gl
 	} else {
 	console.log("no data recorded")
 	}
-};`
+};
+```
 
 My current workflow is to manually add the following elements to the `index.ejs` file:
 
-`<!-- - add to top: -->
+```<!-- - add to top: -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/js/cfscript.js"></script>
 
 <!-- - add to bottom of body: -->
-	<div id="transfercell">No data</div>`
+	<div id="transfercell">No data</div>
+```
+
+The `record` function in the [cfscripts.js](public/js/cfscripts) file plucks this value out of the DOM and calls the 'postToServer' function to POST it to the server.
 
 #### Collecting Responses - Firebase
 
-Currently working on this.
+When the app server ('index.js') gets a POST, it uploads the data to Firebase. To keep my private key secure, I added [dotnev](https://www.npmjs.com/package/dotenv) to the project and store the key information in the hidden '.env' file.
+
+It was also necessary to add `.replace(/\\n/g, '\n')` to the end of the app initialization as per [this post](https://stackoverflow.com/questions/50299329/node-js-firebase-service-account-private-key-wont-parse).
 
 ## Additional resources:
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
