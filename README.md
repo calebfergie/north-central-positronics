@@ -48,3 +48,5 @@ Currently working on this.
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)
 - [Allison Parrish's Twine Introduction](http://catn.decontextualize.com/twine/)
 - [Dan Shiffman's Database as Service Tutorial](https://shiffman.net/a2z/firebase/)
+- [Hackernoon Node JS Firebase Setup](https://hackernoon.com/nodejs-setup-firebase-in-4-step-tutorial-example-easy-beginner-service-account-key-json-node-server-d61e803d6cc8)
+-
