@@ -41,6 +41,7 @@ My current workflow is to manually add the following elements to the `index.ejs`
 <!-- - add to top: -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="/js/cfscript.js"></script>
+<link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
 
 <!-- - add to bottom of body: -->
 <div id="transfercell">No data</div>

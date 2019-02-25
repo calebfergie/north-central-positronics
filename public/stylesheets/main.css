@@ -1,3 +1,18 @@
+img {
+  height: 250px;
+  width: auto;
+  float: right;
+}
+
+/* make transfercell DOM element a freaking GHOST baby */
+/* as per https://medium.freecodecamp.org/how-to-disappear-completely-2f23ddb14835 */
+#transfercell {
+  visibility: hidden;
+  display: none;
+  opacity: 0.0;
+}
+
+/* This was here when I got here */
 .jumbotron {
   background: #532F8C;
   color: white;
@@ -24,4 +39,3 @@
     border: 2px solid white; }
     .jumbotron .lang-logo img {
       max-width: 100%; }
-
