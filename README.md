@@ -17,6 +17,8 @@ For ease of heroku configuration, I also set the `heroku.remote` key to this app
 
 I set the app to the custom (sub)domain [thesis.calebfergie.com](thesis.calebfergie.com) by following [this guide](https://devcenter.heroku.com/articles/custom-domains). I personally manage the [calebfergie.com](https://www.calebfergie.com/) domain through DreamHost, so I followed [these instructions](https://help.dreamhost.com/hc/en-us/articles/115000760591-Setting-your-domain-to-DNS-Only-) to help complete the process.
 
+Note that for data security, this specific repository is not linked to Heroku - it is a copy of the repo without API keys.
+
 #### Collecting Responses - Customizing Twine
 
 I added custom javascript to the twine game, which can be found in the [twine-global.js](/public/js/twine-global.js) file. This file includes:
