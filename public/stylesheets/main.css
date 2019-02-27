@@ -6,7 +6,7 @@ img {
 
 /* make transfercell DOM element a freaking GHOST baby */
 /* as per https://medium.freecodecamp.org/how-to-disappear-completely-2f23ddb14835 */
-#transfercell {
+#passagetransfer, #responsetransfer {
   visibility: hidden;
   display: none;
   opacity: 0.0;
