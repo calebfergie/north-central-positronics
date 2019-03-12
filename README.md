@@ -4,11 +4,12 @@ A game built with [Twine](https://twinery.org/).
 
 You can play it [here](https://thesis.calebfergie.com/). If that link isn't working, try [this](https://north-central-positronics.herokuapp.com/).
 
-**This game is a prototype of my graduate thesis project - more details available (here)[https://blog.calebfergie.com/2019/03/12/thesis-project-update/].**
+**This game is a prototype of my graduate thesis project - more details available [here](https://blog.calebfergie.com/2019/03/12/thesis-project-update/).**
 
 # Development Documentation
 
-## App Setup & Dev Details
+## App Setup
+
 Created with node.js/express and automatically deployed to Heroku using the [node-js-getting-started](https://devcenter.heroku.com/articles/getting-started-with-nodejs) guide, [example app](https://github.com/heroku/node-js-getting-started), and [GitHub integration guide](https://devcenter.heroku.com/articles/github-integration).
 
 I also added [nodemon](https://nodemon.io/) to develop with greater ease locally.
@@ -17,10 +18,13 @@ If you want to use this implementation of Twine for your own purposes try the fo
 
   1. Clone or download this repository
   2. `npm install`
-  3. Create a firebase database and add your credentials to your [.env](/.env) file
+  3. Create a firebase database. Add your credentials to your [.env](/.env) file and update the database name in the [index.js](/index.js) file
+  4. run the game with `node index.js`
   4. Make changes!
 
 **Many more details on these steps and my development process are below**
+
+## Development Details
 
 ### Heroku Configuration
 
@@ -28,7 +32,9 @@ For ease of heroku configuration, I also set the `heroku.remote` key to this app
 
 I set the app to the custom (sub)domain [thesis.calebfergie.com](thesis.calebfergie.com) by following [this guide](https://devcenter.heroku.com/articles/custom-domains). I personally manage the [calebfergie.com](https://www.calebfergie.com/) domain through DreamHost, so I followed [these instructions](https://help.dreamhost.com/hc/en-us/articles/115000760591-Setting-your-domain-to-DNS-Only-) to help complete the process.
 
-### Collecting Responses
+For a secure HTTPS connection, I also [turned off DreamHost's](https://help.dreamhost.com/hc/en-us/articles/115005106528-How-to-remove-an-SSL-certificate) HTTPS certificate management and used Heroku's built-in [automatic SSL configuration](https://devcenter.heroku.com/articles/automated-certificate-management) instead.
+
+## Collecting Responses
 
 The goal of this prototype is to provide an online game and collect users responses to prompts in order to expand the game. Doing this with Twine required a bit of customization, detailed below:
 
@@ -82,6 +88,20 @@ It was also necessary to add `.replace(/\\n/g, '\n')` to the end of the app init
 
 For this repository, I have included a fake `.env` file. Remember to add `.env` to your `.gitignore` file before uploading it anywhere!
 
+As a security practice, I also set my database permissions to authorized users only. More details on firebase security can be found [here](https://firebase.google.com/docs/database/security/quickstart). Here is the code I used for my database rules:
+
+```
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null"
+  }
+}
+
+```
+
+Since I am the *only* authorized user, this means only I can read or write to the database.
+
 #### POSTing to Firebase
 
 The `postToServer` function in the [cfscripts.js](public/js/cfscripts.js) file sends a JSON file to the node server that looks like this:
@@ -107,9 +127,31 @@ user-responses
 
 1. The `sessionID` is generated every time the app server app server ([index.js](index.js)) starts up, allowing me to separate versions of the game in the DB. This ID is made with the [express-session](https://github.com/expressjs/session) module.
 2. Whenever the game page is loaded, a unique ID (`UUID`) is generated with the [uuid](https://github.com/broofa/node-uuid) module. This allows me to track/group the responses of a user/playthrough.
-3. Passage and user response information is stored under that, such that if a user plays through multiple times, all of their responses are stored under one passage record.
+3. Passage and user response information is stored under that, such that if a user plays through multiple times, all of their responses are stored under one UUID record.
 
-Getting this structure to POST correctly was done with a lot of trial and error.
+Getting this structure to POST correctly was done with a lot of trial and error - but finally, *voila* responses are being recorded.
+
+As a final step, I added a feature to group my local development testing responses in one userID called "debugging" and a SessionID of the current time.
+
+This is done throught the `setIDs` function in the [index.js](/index.js) file, which checks if the localhost is making a request.
+
+```
+function setIDs(req) {
+  var sess = req.session.id;
+  //check if the app is being run locally
+  var isLocal = (req.connection.localAddress === req.connection.remoteAddress);
+  if (isLocal) {
+    //set database info to help group and debug
+    sess_ref = ref.child("debugging");
+    date = new Date();
+    user_id = date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear();
+  } else {
+    //set database info to unique user store
+    sess_ref = ref.child(sess);           //add sessionid (sever session, not user) to database and set it as global reference variable
+    user_id = uuidV4();                   //create a unique id for the user session
+  }
+}
+```
 
 ## Additional resources:
 - [Best Practices for Node.js Development](https://devcenter.heroku.com/articles/node-best-practices)

@@ -30,8 +30,6 @@ express()
   .use(bodyParser.urlencoded({extended: false}))
   .use(bodyParser.json())
   .use(session({ secret: 'nosecret', cookie: { maxAge: 60000 }}))
-  //COMMENT THIS OUT BEFORE RUNNING LOCALLY
-  // .use(enforce.HTTPS({ trustProtoHeader: true }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {
@@ -61,7 +59,7 @@ express()
       user_id = date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear();
     } else {
       //set database info to unique user store
-      sess_ref = ref.child(sess); //add sessionid (sever session, not user) to database and set it as global reference variable
+      sess_ref = ref.child(sess);           //add sessionid (sever session, not user) to database and set it as global reference variable
       user_id = uuidV4();                   //create a unique id for the user session
     }
   }
