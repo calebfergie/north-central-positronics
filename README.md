@@ -2,14 +2,25 @@
 
 A game built with [Twine](https://twinery.org/).
 
-You can play it [here](http://thesis.calebfergie.com/). If that link isn't working, try [this](https://north-central-positronics.herokuapp.com/).
+You can play it [here](https://thesis.calebfergie.com/). If that link isn't working, try [this](https://north-central-positronics.herokuapp.com/).
 
-Caleb Ferguson's Thesis Project
+**This game is a prototype of my graduate thesis project - more details available (here)[https://blog.calebfergie.com/2019/03/12/thesis-project-update/].**
+
+# Development Documentation
 
 ## App Setup & Dev Details
 Created with node.js/express and automatically deployed to Heroku using the [node-js-getting-started](https://devcenter.heroku.com/articles/getting-started-with-nodejs) guide, [example app](https://github.com/heroku/node-js-getting-started), and [GitHub integration guide](https://devcenter.heroku.com/articles/github-integration).
 
 I also added [nodemon](https://nodemon.io/) to develop with greater ease locally.
+
+If you want to use this implementation of Twine for your own purposes try the following steps:
+
+  1. Clone or download this repository
+  2. `npm install`
+  3. Create a firebase database and add your credentials to your [.env](/.env) file
+  4. Make changes!
+
+**Many more details on these steps and my development process are below**
 
 ### Heroku Configuration
 
