@@ -1,7 +1,6 @@
-img {
-  height: 250px;
+img, png {
+  max-height: 10em;
   width: auto;
-  float: right;
 }
 
 /* make transfercell DOM element a freaking GHOST baby */
@@ -10,6 +9,27 @@ img {
   visibility: hidden;
   display: none;
   opacity: 0.0;
+}
+
+#story-subtitle {
+  font-size: 10px;
+  font-style: italic;
+}
+
+#textbox-firstdigit, #textbox-seconddigit, #textbox-thirddigit {
+  max-width: 5%;
+  min-width: 2%;
+  border-width: thick;
+  margin: 15px;
+}
+
+#gamenote {
+  font-size: 12px;
+  font-style: italic;
+}
+
+#textbox-ugcresponse {
+  line-height: 600%;
 }
 
 /* This was here when I got here */

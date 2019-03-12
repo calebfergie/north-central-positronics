@@ -4,9 +4,11 @@ const bodyParser = require("body-parser");
 const admin = require('firebase-admin');
 const session = require('express-session');
 const uuidV4 = require('uuid/v4');
+const enforce = require('express-sslify');
 const PORT = process.env.PORT || 5000
-require('dotenv').config()
 
+//DOTENV
+require('dotenv').config();
 
 //FIREBASE
 admin.initializeApp({
@@ -28,12 +30,13 @@ express()
   .use(bodyParser.urlencoded({extended: false}))
   .use(bodyParser.json())
   .use(session({ secret: 'nosecret', cookie: { maxAge: 60000 }}))
+  //COMMENT THIS OUT BEFORE RUNNING LOCALLY
+  // .use(enforce.HTTPS({ trustProtoHeader: true }))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => {
-    sess_ref = ref.child(req.session.id); //add sessionid (sever session, not user) to database and set it as global reference variable
-    user_id = uuidV4();                   //create a unique id for the user session
-    console.log("sessionID is: " + req.session.id + " userID is: " + user_id);
+    setIDs(req);
+    console.log("sessionID is: " + sess_ref + " userID is: " + user_id);
     res.render('pages/index'); //serve the game
   })
   .post('/db', (req, res) => {
@@ -46,3 +49,19 @@ express()
     res.status(200).end();
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+  function setIDs(req) {
+    var sess = req.session.id;
+    //check if the app is being run locally
+    var isLocal = (req.connection.localAddress === req.connection.remoteAddress);
+    if (isLocal) {
+      //set database info to help group and debug
+      sess_ref = ref.child("debugging");
+      date = new Date();
+      user_id = date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear();
+    } else {
+      //set database info to unique user store
+      sess_ref = ref.child(sess); //add sessionid (sever session, not user) to database and set it as global reference variable
+      user_id = uuidV4();                   //create a unique id for the user session
+    }
+  }

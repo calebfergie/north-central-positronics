@@ -26,15 +26,25 @@ function record(event) {
   postToServer(path,data);
 };
 
-// jQuery event for when enter is presed
+function addSubtitle() {
+  $("#story-subtitle").load("html-snippets/subtitle.html");
+};
+
+// jQuery STUFF
 $(document).ready(function() {
+
+  //add custom subtitle (data disclaimer) content
+  window.onload = function() {
+    addSubtitle();
+  }
+
   $(document.body).keypress(function(event) {
+    //collect data whenever a user presses enter
     if (event.which == 13) {
       event.preventDefault();
       console.log("user pressed enter");
       event.preventDefault(); // don't submit form
-      // do what you want here
       record(event);
     }
-  });
+    });
 });
