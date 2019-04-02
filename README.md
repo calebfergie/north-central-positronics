@@ -2,7 +2,7 @@
 
 A game built with [Twine](https://twinery.org/).
 
-You can play it [here](https://thesis.calebfergie.com/). If that link isn't working, try [this](https://north-central-positronics.herokuapp.com/).
+You can play it [here](https://north-central-positronics.herokuapp.com/).
 
 **This game is a prototype of my graduate thesis project - more details available [here](https://blog.calebfergie.com/2019/03/12/thesis-project-update/).**
 
